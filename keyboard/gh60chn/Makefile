@@ -55,7 +55,7 @@ SRC =	matrix.c \
 ifdef KEYMAP
     SRC := keymap_$(KEYMAP).c $(SRC)
 else
-    SRC := keymap_poker.c $(SRC)
+    SRC := keymap.c $(SRC)
 endif
 
 CONFIG_H = config.h
@@ -115,12 +115,12 @@ OPT_DEFS += -DBOOTLOADER_SIZE=4096
 #   comment out to disable the options.
 #
 BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration(+1000)
-MOUSEKEY_ENABLE = yes	# Mouse keys(+4300)
-EXTRAKEY_ENABLE = yes	# Audio control and System control(+200)
+#MOUSEKEY_ENABLE = yes	# Mouse keys(+4300)
+#EXTRAKEY_ENABLE = yes	# Audio control and System control(+200)
 CONSOLE_ENABLE = yes	# Console for debug(+3900)
 COMMAND_ENABLE = yes	# Commands for debug and configuration(+2500)
 #SLEEP_LED_ENABLE = yes	# Breathing sleep LED during USB suspend(+200)
-NKRO_ENABLE = yes	# USB Nkey Rollover(+500)
+#NKRO_ENABLE = yes	# USB Nkey Rollover(+500)
 USB_6KRO_ENABLE = yes	# USB 6key Rollover(+500)
 BACKLIGHT_ENABLE = yes	# Backlighting(+1000)
 
