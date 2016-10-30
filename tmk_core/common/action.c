@@ -66,6 +66,12 @@ void process_action(keyrecord_t *record)
     if (IS_NOEVENT(event)) { return; }
 
     action_t action = layer_switch_get_action(event.key);
+    static action_t action_on_press[MATRIX_ROWS][MATRIX_COLS];
+    if (event.pressed) {
+        action_on_press[event.key.row][event.key.col] = action;
+    } else {
+        action = action_on_press[event.key.row][event.key.col];
+    }
     dprint("ACTION: "); debug_action(action);
 #ifndef NO_ACTION_LAYER
     dprint(" layer_state: "); layer_debug();
