@@ -60,6 +60,9 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
             if (pressed) {
                 fn_locked = false;
                 layer_off(FN_LAYER);
+                // LED off
+                DDRB &= ~(1<<2);
+                PORTB &= ~(1<<2);
             }
         }
         break;
@@ -68,6 +71,9 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
             if (pressed) {
                 fn_locked = true;
                 layer_on(FN_LAYER);
+                // LED on
+                DDRB |= (1<<2);
+                PORTB &= ~(1<<2);
             }
         } else {
             layer_set(FN_LAYER, !pressed);
