@@ -1,110 +1,89 @@
 #include "keymap_common.h"
+#include "action_layer.h"
+
+#define DEFAULT_LAYER 0
+#define SHIFT_LAYER 1
+#define FN_LAYER 2
+
+enum function_id {
+    FN_KEY_DEFAULT_LAYER,
+    FN_KEY_FN_LAYER,
+};
+
+const action_t PROGMEM fn_actions[32] = {
+    [0] = ACTION_FUNCTION(FN_KEY_DEFAULT_LAYER),
+    [1] = ACTION_FUNCTION(FN_KEY_FN_LAYER),
+    [2] = ACTION_LAYER_MODS(SHIFT_LAYER, MOD_LSFT),
+    [5] = ACTION_BACKLIGHT_TOGGLE(),
+    [6] = ACTION_BACKLIGHT_DECREASE(),
+    [7] = ACTION_BACKLIGHT_INCREASE(),
+};
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* 0: QWERTY */
-    KEYMAP_ANSI(
-        FN4, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC, \
+    /* 0: Default layer */
+    [DEFAULT_LAYER] = KEYMAP_ANSI(
+        ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC, \
         TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS, \
         FN0, A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,     ENT,  \
-        LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,          UP,   \
+        FN2, Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,          UP,   \
         LCTL,LGUI,LALT,          SPC,                     FN0, LEFT,DOWN,RGHT),
-    /* 1: Fn overlay */
-    KEYMAP_ANSI(
+    /* 1: Shift layer: Shift + Esc -> Tilde */
+    [SHIFT_LAYER] = KEYMAP_ANSI(
+        GRV, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS, \
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS, \
+        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
+    /* 2: Fn layer */
+    [FN_LAYER] = KEYMAP_ANSI(
         GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,  \
         TRNS,TRNS,UP,  TRNS,TRNS,TRNS,TRNS,TRNS,INS ,TRNS,PSCR,SLCK,PAUS,TRNS, \
-        TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,LEFT,DOWN,UP  ,RGHT,HOME,PGUP,     TRNS, \
-        TRNS,TRNS,TRNS,FN2, FN1, FN3, TRNS,TRNS,TRNS,END, PGDN,          RSFT, \
-        TRNS,TRNS,TRNS,          TRNS,                    TRNS,RALT,RGUI,RCTL),
-    /* 2: Empty */
-    KEYMAP_ANSI(
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS, \
-        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
-    /* 3: Empty */
-    KEYMAP_ANSI(
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS, \
-        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
-    /* 4: Empty */
-    KEYMAP_ANSI(
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS, \
-        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
-    /* 5: Empty */
-    KEYMAP_ANSI(
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS, \
-        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
-    /* 6: Empty */
-    KEYMAP_ANSI(
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS, \
-        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
-    /* 7: Empty */
-    KEYMAP_ANSI(
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS, \
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS, \
-        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
+        FN1, LEFT,DOWN,RGHT,TRNS,TRNS,LEFT,DOWN,UP  ,RGHT,HOME,PGUP,     TRNS, \
+        TRNS,TRNS,TRNS,FN6, FN5, FN7, TRNS,TRNS,TRNS,END, PGDN,          RSFT, \
+        TRNS,TRNS,TRNS,          TRNS,                    FN1, RALT,RGUI,RCTL),
 };
 
-/*
- * User defined action function
- */
-enum function_id {
-    ESCAPE, // Shift + Esc -> Tilde
-};
+inline static void layer_set(uint8_t layer, bool state) {
+    if (state) layer_on(layer);
+    else layer_off(layer);
+}
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
-    const uint8_t MODS_SHIFT_MASK = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT);
-    static bool shift_was_pressed;
+    static bool fn_locked = false;
+    bool pressed = record->event.pressed;
 
     switch (id) {
-    case ESCAPE:
-        if (record->event.pressed) {
-            if (get_mods() & MODS_SHIFT_MASK) {
-                add_key(KC_GRV); // Send Shift + Grave = Tilde
-                shift_was_pressed = true;
-                send_keyboard_report();
-            } else {
-                add_key(KC_ESC);
-                shift_was_pressed = false;
-                send_keyboard_report();
+    case FN_KEY_DEFAULT_LAYER:
+        if (!fn_locked) {
+            layer_set(FN_LAYER, pressed);
+        } else {
+            if (pressed) {
+                fn_locked = false;
+                layer_off(FN_LAYER);
+            }
+        }
+        break;
+    case FN_KEY_FN_LAYER:
+        if (!fn_locked) {
+            if (pressed) {
+                fn_locked = true;
+                layer_on(FN_LAYER);
             }
         } else {
-            if (shift_was_pressed) {
-                del_key(KC_GRV);
-                send_keyboard_report();
-            } else {
-                del_key(KC_ESC);
-                send_keyboard_report();
-            }
+            layer_set(FN_LAYER, !pressed);
         }
         break;
     }
 }
 
-const action_t PROGMEM fn_actions[] = {
-    [0] = ACTION_LAYER_MOMENTARY(1), // To Fn overlay
-    [1] = ACTION_BACKLIGHT_TOGGLE(),
-    [2] = ACTION_BACKLIGHT_DECREASE(),
-    [3] = ACTION_BACKLIGHT_INCREASE(),
-    [4] = ACTION_FUNCTION(ESCAPE),
-    [5] = 0, // Empty
-    [6] = 0, // Empty
-    [7] = 0, // Empty
-};
+/*
+void hook_late_init(void) {
+    xprintf("hook_late_init: %d\n", layer_state);
+}
+void hook_layer_change(uint32_t layer_state) {
+    xprintf("hook_layer_change: %d\n", layer_state);
+}
+*/
 
 /*
     KEYMAP_ANSI(
