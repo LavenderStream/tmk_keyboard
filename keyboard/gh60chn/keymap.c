@@ -37,9 +37,9 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* 2: Fn layer */
     [FN_LAYER] = KEYMAP_ANSI(
         GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,  \
-        TRNS,TRNS,UP,  TRNS,TRNS,TRNS,TRNS,TRNS,INS ,TRNS,PSCR,SLCK,PAUS,TRNS, \
-        FN1, LEFT,DOWN,RGHT,TRNS,TRNS,LEFT,DOWN,UP  ,RGHT,HOME,PGUP,     TRNS, \
-        TRNS,TRNS,TRNS,FN6, FN5, FN7, TRNS,TRNS,TRNS,END, PGDN,          RSFT, \
+        NO,  NO,  UP,  NO,  NO,  NO,  NO,  NO,  INS, NO,  PSCR,SLCK,PAUS,NO,   \
+        FN1, LEFT,DOWN,RGHT,NO,  NO,  LEFT,DOWN,UP  ,RGHT,HOME,PGUP,     TRNS, \
+        TRNS,NO,  NO,  FN6, FN5, FN7, NO,  NO,  NO,  END, PGDN,          RSFT, \
         TRNS,TRNS,TRNS,          TRNS,                    FN1, RALT,RGUI,RCTL),
 };
 
