@@ -6,11 +6,12 @@
 #define FN_LAYER 2
 
 const action_t PROGMEM fn_actions[32] = {
-    [0] = ACTION_LAYER_MOMENTARY(FN_LAYER),
+    [0] = ACTION_LAYER_TAP_KEY(FN_LAYER, KC_SPACE),
     [1] = ACTION_LAYER_MODS(SHIFT_LAYER, MOD_LSFT),
-    [5] = ACTION_BACKLIGHT_TOGGLE(),
-    [6] = ACTION_BACKLIGHT_DECREASE(),
-    [7] = ACTION_BACKLIGHT_INCREASE(),
+    //[2] = ACTION_LAYER_MOMENTARY(FN_LAYER),
+    //[5] = ACTION_BACKLIGHT_TOGGLE(),
+    //[6] = ACTION_BACKLIGHT_DECREASE(),
+    //[7] = ACTION_BACKLIGHT_INCREASE(),
 };
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -18,9 +19,9 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEFAULT_LAYER] = KEYMAP_ANSI(
         ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC, \
         TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS, \
-        FN0, A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,     ENT,  \
+        LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,     ENT,  \
         FN1, Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,          RSFT, \
-        LCTL,LGUI,LALT,          SPC,                     LEFT,DOWN,UP,  RGHT),
+        LCTL,LGUI,LALT,          FN0,                     LEFT,DOWN,UP,  RGHT),
     /* 1: Shift layer: Shift + Esc -> Tilde */
     [SHIFT_LAYER] = KEYMAP_ANSI(
         GRV, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, \
@@ -31,9 +32,9 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* 2: Fn layer */
     [FN_LAYER] = KEYMAP_ANSI(
         GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,  \
-        NO,  NO,  UP,  NO,  NO,  NO,  NO,  NO,  INS, NO,  PSCR,SLCK,PAUS,NO,   \
+        NO,  NO,  UP,  ESC, NO,  NO,  NO,  NO,  INS, NO,  PSCR,SLCK,PAUS,NO,   \
         TRNS,LEFT,DOWN,RGHT,NO,  NO,  LEFT,DOWN,UP,  RGHT,HOME,PGUP,     TRNS, \
-        TRNS,NO,  NO,  FN6, FN5, FN7, NO,  NO,  NO,  END, PGDN,          TRNS, \
+        TRNS,NO,  NO,  HOME,END, SPC, PGDN,PGUP,NO,  END, PGDN,          TRNS, \
         TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
 };
 
