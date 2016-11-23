@@ -8,7 +8,6 @@
 const action_t PROGMEM fn_actions[32] = {
     [0] = ACTION_LAYER_TAP_KEY(FN_LAYER, KC_SPACE),
     [2] = ACTION_LAYER_MODS(SHIFT_LAYER, MOD_LSFT),
-    [3] = ACTION_LAYER_MODS(SHIFT_LAYER, MOD_RSFT),
     //[5] = ACTION_BACKLIGHT_TOGGLE(),
     //[6] = ACTION_BACKLIGHT_DECREASE(),
     //[7] = ACTION_BACKLIGHT_INCREASE(),
@@ -20,7 +19,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC, \
         TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS, \
         LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,     ENT,  \
-        FN2, Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,          FN3,  \
+        FN2, Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,          RSFT, \
         LCTL,LGUI,LALT,          FN0,                     LEFT,DOWN,UP,  RGHT),
     /* 1: Shift layer: Shift + Esc -> Tilde */
     [SHIFT_LAYER] = KEYMAP_ANSI(
